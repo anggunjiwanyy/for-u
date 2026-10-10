@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for u ♡</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            background: #faf4f5;
+            color: #514448;
+            text-align: center;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 50px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tag {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 4px;
+            color: #b17c8d;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: clamp(35px, 8vw, 55px);
+            font-weight: normal;
+            margin-bottom: 18px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .next,
+        button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            border: 1px solid #d9aab8;
+            border-radius: 30px;
+            background: transparent;
+            color: #76515e;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .photo {
+            width: min(270px, 80vw);
+            height: 330px;
+            object-fit: cover;
+            border-radius: 140px 140px 18px 18px;
+            border: 5px solid white;
+            box-shadow: 0 8px 25px #d9bdc633;
+            margin: 12px 0;
+        }
+
+        .message {
+            max-width: 340px;
+        }
+
+        .music-card,
+        .letter-card {
+            width: 100%;
+            max-width: 360px;
+            padding: 30px 22px;
+            background: #fffafb;
+            border: 1px solid #f0dfe4;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px #d9bdc622;
+        }
+
+        .music-icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        #letter {
+            display: none;
+            margin-top: 22px;
+            animation: appear 0.7s ease;
+        }
+
+        .letter-text {
+            font-size: 15px;
+            line-height: 2;
+        }
+
+        footer {
+            padding: 25px;
+            font-size: 12px;
+            color: #b17c8d;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HALAMAN PEMBUKA -->
+    <section id="home">
+        <p class="tag">A LITTLE SOMETHING</p>
+
+        <h1>hii, u.</h1>
+
+        <p>scroll dulu, ya ♡</p>
+
+        <a href="#photoSection" class="next">
+            let's see ↓
+        </a>
+    </section>
+
+
+    <!-- FOTO -->
+    <section id="photoSection">
+        <p class="tag">A LITTLE MEMORY</p>
+
+        <h2>just for you, farhan ♡</h2>
+
+        <img
+            src="foto.jpg"
+            alt="Foto kenangan kita"
+            class="photo"
+        >
+
+        <p>one of my favorite people.</p>
+
+        <a href="#music" class="next">
+            lanjut ↓
+        </a>
+    </section>
+
+
+    <!-- LAGU -->
+    <section id="music">
+        <p class="tag">A SONG FOR YOU</p>
+
+        <div class="music-card">
+            <div class="music-icon">♫</div>
+
+            <h2>kesima</h2>
+
+            <p>a little song for someone special.</p>
+
+            <button id="musicButton" onclick="toggleMusic()">
+                play music ♡
+            </button>
+        </div>
+
+        <a href="#message" class="next">
+            next ↓
+        </a>
+    </section>
+
+
+    <!-- PESAN -->
+    <section id="message">
+        <p class="tag">A LITTLE MESSAGE</p>
+
+        <div class="message">
+            <h2>for u,</h2>
+
+            <p>
+                makasih ya, for still choosing me.
+                <br><br>
+
+                even when we're distant, I'm glad
+                we still choose each other.
+                <br><br>
+
+                semoga tetap aku, ya. love u ♡
+            </p>
+        </div>
+
+        <a href="#letterSection" class="next">
+            one last thing ↓
+        </a>
+    </section>
+
+
+    <!-- SURAT KECIL -->
+    <section id="letterSection">
+        <p class="tag">JUST ONE MORE THING</p>
+
+        <div class="letter-card">
+            <h2>a little letter ♡</h2>
+
+            <p>ada sesuatu buat kamu.</p>
+
+            <button onclick="openLetter()">
+                open my letter ♡
+            </button>
+
+            <div id="letter">
+                <p class="letter-text">
+                    whatever happens,<br>
+                    i'm glad it's you.<br><br>
+
+                    take care of yourself, ya.<br>
+                    i'll always wish you the best. ♡
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- PENUTUP -->
+    <footer>
+        made just for u ♡
+    </footer>
+
+
+    <!-- FILE MUSIK -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="kesima.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <script>
+        const music = document.getElementById("bgMusic");
+        const musicButton = document.getElementById("musicButton");
+
+        // Mencoba memutar lagu saat website dibuka
+        window.addEventListener("load", function () {
+            music.play()
+                .then(function () {
+                    musicButton.textContent = "pause music ♡";
+                })
+                .catch(function () {
+                    musicButton.textContent = "play music ♡";
+                });
+        });
+
+        // Memutar atau menghentikan lagu
+        function toggleMusic() {
+            if (music.paused) {
+                music.play()
+                    .then(function () {
+                        musicButton.textContent = "pause music ♡";
+                    })
+                    .catch(function () {
+                        musicButton.textContent = "play music ♡";
+                    });
+            } else {
+                music.pause();
+                musicButton.textContent = "play music ♡";
+            }
+        }
+
+        // Membuka atau menutup surat
+        function openLetter() {
+            const letter = document.getElementById("letter");
+
+            if (letter.style.display === "block") {
+                letter.style.display = "none";
+            } else {
+                letter.style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>
