@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>for u</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #faf4f5;
+    color: #514448;
+    font-family: Arial, sans-serif;
+}
+
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 24px;
+    text-align: center;
+}
+
+.tag {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #aa828e;
+    margin-bottom: 22px;
+}
+
+h1 {
+    font-size: clamp(30px, 8vw, 44px);
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+p {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #817178;
+}
+
+button, .next {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 22px;
+    border: 1px solid #e8d2d9;
+    border-radius: 30px;
+    background: #f0dfe4;
+    color: #514448;
+    text-decoration: none;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+button:hover, .next:hover {
+    background: #e7cbd4;
+}
+
+.song-card {
+    width: 100%;
+    max-width: 300px;
+    padding: 30px 20px;
+    margin-top: 15px;
+    background: #fffdfd;
+    border: 1px solid #eee1e4;
+    border-radius: 12px;
+}
+
+.song-icon {
+    font-size: 30px;
+    color: #c397a5;
+    margin-bottom: 16px;
+}
+
+.song-title {
+    font-size: 17px;
+    color: #514448;
+    margin-bottom: 8px;
+}
+
+.letter {
+    display: none;
+    max-width: 320px;
+    margin-top: 25px;
+    padding: 25px;
+    background: #fffdfd;
+    border: 1px solid #eee1e4;
+    border-radius: 10px;
+    text-align: left;
+    animation: appear 0.5s ease;
+}
+
+.letter.show {
+    display: block;
+}
+
+.letter p + p {
+    margin-top: 14px;
+}
+
+footer {
+    padding: 30px;
+    text-align: center;
+    color: #aa828e;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section id="home">
+    <p class="tag">A LITTLE SOMETHING</p>
+
+    <h1>hii, u.</h1>
+
+    <p>
+        made something for you.
+        <br>
+        scroll dulu, ya :)
+    </p>
+
+    <a href="#music" class="next">let's see ↓</a>
+</section>
+
+<section id="music">
+    <p class="tag">A SONG FOR YOU</p>
+
+    <h1>lagu buat kamu.</h1>
+
+    <div class="song-card">
+        <div class="song-icon">♫</div>
+
+        <div class="song-title">kesima</div>
+
+        <p>one little song, just for you.</p>
+
+        <button id="musicButton" onclick="toggleMusic()">
+            ▶ play song
+        </button>
+    </div>
+
+    <audio id="bgMusic" loop autoplay>
+        <source src="kesima.mp3" type="audio/mpeg">
+    </audio>
+
+    <a href="#message" class="next">lanjut ↓</a>
+</section>
+
+<section id="message">
+    <p class="tag">JUST A LITTLE NOTE</p>
+
+    <h1>for my favorite person.</h1>
+
+    <p>
+        just a little something
+        <br>
+        I made for you.
+    </p>
+
+    <a href="#letterSection" class="next">one more thing ↓</a>
+</section>
+
+<section id="letterSection">
+    <p class="tag">A NOTE FOR YOU</p>
+
+    <h1>for u.</h1>
+
+    <p>ada sedikit pesan buat kamu.</p>
+
+    <button onclick="openLetter()" id="letterButton">
+        open this
+    </button>
+
+    <div class="letter" id="letter">
+        <p>makasih ya, for still choosing me.</p>
+
+        <p>
+            walaupun kita sering asing,
+            I'm glad we still choose each other.
+        </p>
+
+        <p>semoga tetap aku, ya. love u ♡</p>
+    </div>
+</section>
+
+<footer>
+    made just for u ♡
+</footer>
+
+<script>
+const music = document.getElementById("bgMusic");
+const musicButton = document.getElementById("musicButton");
+
+// Coba putar lagu saat website dibuka
+window.addEventListener("load", () => {
+    music.play()
+        .then(() => {
+            musicButton.textContent = "Ⅱ pause song";
+        })
+        .catch(() => {
+            musicButton.textContent = "▶ play song";
+        });
+});
+
+function toggleMusic() {
+    if (music.paused) {
+        music.play()
+            .then(() => {
+                musicButton.textContent = "Ⅱ pause song";
+            })
+            .catch(() => {
+                musicButton.textContent = "tap to play";
+            });
+    } else {
+        music.pause();
+        musicButton.textContent = "▶ play song";
+    }
+}
+
+function openLetter() {
+    const letter = document.getElementById("letter");
+    const button = document.getElementById("letterButton");
+
+    letter.classList.toggle("show");
+
+    button.textContent = letter.classList.contains("show")
+        ? "close"
+        : "open this";
+}
+</script>
+
+</body>
+</html>
